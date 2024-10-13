@@ -23,8 +23,8 @@ public class Console {
                 (
                         userinput.equalsIgnoreCase("Y")
                                 ||
-                                userinput.equalsIgnoreCase("YES")
-                );
+                        userinput.equalsIgnoreCase("YES")
+                ); // Returns false for any invalid input, may cause unexpected behavior
 
     }
 

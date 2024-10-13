@@ -1,13 +1,11 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Transactions {
+    public static final String fileHeader = "date|time|description|vendor|amount";
 
     /**
      * Loads all transactions, turns each into an object and puts them in a List.
@@ -44,6 +42,35 @@ public class Transactions {
         }
         return loadedTransactions;
 
+    }
+
+    public List<Transaction> saveTransactions(String Filename, List<Transaction> transactionList) throws IOException {
+        FileWriter fw = new FileWriter(Filename);
+        BufferedWriter bw = new BufferedWriter(fw);
+
+        // Close file in case of error
+        try {
+            bw.write(fileHeader + '\n'); // Write Header
+            for (Transaction transaction : transactionList) {
+                bw.write(
+                        transaction.date + '|' +
+                                transaction.time + '|' +
+                                transaction.description + '|' +
+                                transaction.vendor + '|' +
+                                transaction.amount  + '\n'
+                );
+            }
+
+        }
+        finally {
+            bw.close();
+        }
+
+        return transactionList;
+    }
+
+    public static String getFileHeader() {
+        return fileHeader;
     }
 
 
