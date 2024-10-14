@@ -32,7 +32,9 @@ public class Main {
                     case 'P':
                         updateBalance(false); continue;
                     case 'L':
-                        Ledger.ledgerHome(transactions);
+                        Ledger.ledgerHome(transactions); continue;
+                    case 'G':
+                        guitest.main(args); // should i be passing this?
                 }
             }
             catch (IllegalArgumentException e) {
