@@ -140,7 +140,5 @@ public class Main {
                 vendorInput,
                 amount));
         new Transactions().saveTransactions(Filename, output);
-
-
     }
 }
