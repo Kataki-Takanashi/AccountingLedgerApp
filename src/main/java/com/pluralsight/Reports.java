@@ -32,7 +32,9 @@ public class Reports {
                         do {
                             vendor = Console.PromptForString("Enter vendor: ");
                         } while (vendor.isBlank());
-                        displayList(TransactionFilters.filterByVendor(transactions, vendor));
+                        displayList(TransactionFilters.filterByVendor(transactions, vendor)); continue;
+                    case 6:
+                        displayList(TransactionFilters.customSearch(transactions));
                 }
             }
             catch (IllegalArgumentException e) {
@@ -43,6 +45,7 @@ public class Reports {
     }
 
     public static void displayList(List<Transactions.Transaction> transactions) {
+        if (transactions.isEmpty()) {System.out.println("No results found for your search!"); return;}
         System.out.printf("%-13s %-15s %-50s %-40s %-10s%n", "Date", "Time", "Description", "Vendor", "Amount");
         for (Transactions.Transaction transaction : transactions) {
             System.out.printf("%-13s %-15s %-50s %-40s %-10s%n",
@@ -62,6 +65,7 @@ public class Reports {
                     \t[3] Year To Date
                     \t[4] Previous Year
                     \t[5] Search By Vendor
+                    \t[6] Custom Search
                     \t[0] Back
                     Enter Command:\s""";
         String selection;
@@ -76,6 +80,7 @@ public class Reports {
             case 3 -> 3;
             case 4 -> 4;
             case 5 -> 5;
+            case 6 -> 6;
             case 0 -> 0;
             default -> throw new IllegalArgumentException("Invalid selection: " + selection);
         };
@@ -136,6 +141,67 @@ public class Reports {
             return transactions.stream()
                     .filter(transaction -> transaction.getVendor().equalsIgnoreCase(vendor))
                     .collect(Collectors.toList());
+        }
+
+        // 6. Custom Search
+        public static List<Transactions.Transaction> customSearch(List<Transactions.Transaction> transactions) {
+            List<Transactions.Transaction> resultList = transactions;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            // Get Start date
+            String startDateString = Console.PromptForString("Start Date: ");
+            if (!startDateString.isBlank()) {
+                LocalDate startDate = LocalDate.parse(startDateString, formatter);
+
+                // Use stream to filter transactions by start date
+                resultList = resultList.stream()
+                        .filter(transaction -> {
+                            LocalDate transactionDate = LocalDate.parse(transaction.getDate(), formatter);
+                            return transactionDate.isAfter(startDate);
+                        }).collect(Collectors.toList());
+            }
+
+            // Get End Date
+            String endDateString = Console.PromptForString("End Date: ");
+            if (!endDateString.isBlank()) {
+                LocalDate startDate = LocalDate.parse(endDateString, formatter);
+
+                // Use stream to filter transactions by end date
+                resultList = resultList.stream()
+                        .filter(transaction -> {
+                            LocalDate transactionDate = LocalDate.parse(transaction.getDate(), formatter);
+                            return transactionDate.isBefore(startDate);
+                        }).collect(Collectors.toList());
+            }
+
+            // Get Description
+            String description = Console.PromptForString("Description: ");
+            if (!description.isBlank()) {
+                resultList = resultList.stream().filter(transaction -> {
+                    return transaction.getDescription().equals(description);
+                }).collect(Collectors.toList());
+            }
+
+            // Get Vendor
+            String vendor = Console.PromptForString("Vendor: ");
+            if (!vendor.isBlank()) {
+                resultList = resultList.stream().filter(transaction -> {
+                    return transaction.getVendor().equals(vendor);
+                }).collect(Collectors.toList());
+            }
+
+            // Get Amount
+            String inputDouble = Console.PromptForString("Amount: ");
+            if (!inputDouble.isBlank()) {
+                double amount = Double.parseDouble(inputDouble);
+                resultList = resultList.stream().filter(transaction -> {
+                    return transaction.getAmount() == amount;
+                }).collect(Collectors.toList());
+            }
+
+
+
+            return resultList;
         }
     }
 }

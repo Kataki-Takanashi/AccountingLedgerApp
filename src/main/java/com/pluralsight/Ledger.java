@@ -36,6 +36,7 @@ public class Ledger {
     }
 
     private static void displayAll(List<Transactions.Transaction> transactions) {
+        if (transactions.isEmpty()) {System.out.println("No results found, empty file!"); return;}
         // Print Header
         System.out.printf("%-13s %-15s %-50s %-40s %-10s%n", "Date", "Time", "Description", "Vendor", "Amount");
 
@@ -51,6 +52,7 @@ public class Ledger {
     }
 
     private static void displayAll(List<Transactions.Transaction> transactions, boolean isDeposit) {
+        if (transactions.isEmpty()) {System.out.println("No results found for your search!"); return;}
         // Print Header
         System.out.printf("%-13s %-15s %-50s %-40s %-10s%n", "Date", "Time", "Description", "Vendor", "Amount");
 
