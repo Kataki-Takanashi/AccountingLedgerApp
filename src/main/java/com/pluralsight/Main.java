@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    private static final String Filename = "transactions.csv";
+    private static final String Filename = "testTransactions.csv";
     public static void main(String[] args) throws IOException {
         // Get Date and Time
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -37,6 +37,7 @@ public class Main {
                     case 'P':
                         updateBalance(false); continue;
                     case 'L':
+                        Ledger.ledgerHome(Filename);
                 }
             }
             catch (IllegalArgumentException e) {

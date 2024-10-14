@@ -126,8 +126,7 @@ public class Transactions {
             this.amount = amount;
         }
 
-        @Override
-        public String toString() {
+        public String toString(boolean dev) {
             return "Transaction{" +
                     "date='" + date + '\'' +
                     ", time='" + time + '\'' +
@@ -135,6 +134,10 @@ public class Transactions {
                     ", vendor='" + vendor + '\'' +
                     ", amount=" + amount +
                     '}';
+        }
+        @Override
+        public String toString() {
+            return date + '|' + time + '|' + description + '|' + vendor + '|' + amount;
         }
     }
 }
