@@ -14,11 +14,6 @@ import java.util.List;
 public class Main {
     private static final String Filename = "testTransactions.csv";
     public static void main(String[] args) throws IOException {
-        // Get Date and Time
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        LocalDate currentDate;
-        LocalDateTime currentTime;
 
         // Load the transactions file
         Transactions t = new Transactions();
@@ -37,7 +32,7 @@ public class Main {
                     case 'P':
                         updateBalance(false); continue;
                     case 'L':
-                        Ledger.ledgerHome(Filename);
+                        Ledger.ledgerHome(transactions);
                 }
             }
             catch (IllegalArgumentException e) {

@@ -7,10 +7,8 @@ import java.util.List;
 
 public class Ledger {
 
-    public static void ledgerHome(String Filename) throws IOException {
+    public static void ledgerHome(List<Transactions.Transaction> transactions) throws IOException {
         // Load the transactions file
-        Transactions t = new Transactions();
-        List<Transactions.Transaction> transactions = t.loadTransactions(Filename);
 
         char userSelection = 0;
 
@@ -27,6 +25,7 @@ public class Ledger {
                     case 'P':
                         displayAll(transactions, false); continue;
                     case 'R':
+                        Reports.reportsHome(transactions);
                 }
             }
             catch (IllegalArgumentException e) {
@@ -78,7 +77,7 @@ public class Ledger {
                     \tDisplay [D]eposits
                     \tDisplay [P]ayments
                     \tDisplay [R]eports
-                    \tExit    [X]
+                    \tBack    [B]
                     Enter Command:\s""";
         String selection;
 
@@ -86,12 +85,12 @@ public class Ledger {
             selection = Console.PromptForString(options);
         } while (selection.isEmpty());
 
-        return switch (selection.toUpperCase()) { // New way to do a switch statement!
+        return switch (selection.toUpperCase()) {
             case "A" -> 'A';
             case "D" -> 'D';
             case "P" -> 'P';
             case "R" -> 'R';
-            case "X", "EXIT", "E", "Q", "QUIT" -> 'X';
+            case "X", "EXIT", "E", "Q", "QUIT", "B" -> 'X';
             default -> throw new IllegalArgumentException("Invalid selection: " + selection);
         };
 
