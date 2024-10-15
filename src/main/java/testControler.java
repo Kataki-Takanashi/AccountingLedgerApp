@@ -6,27 +6,23 @@ import javafx.scene.shape.Circle;
 public class testControler {
 
     @FXML
-    private Circle myCircle;
+    private Circle myCircle; // Injected Circle object
     private double x;
     private double y;
 
     public void up(ActionEvent e) {
-//        System.out.println("up");
-        myCircle.setCenterY(y-=1);
+        myCircle.setCenterY(y -= 10);
     }
 
     public void down(ActionEvent e) {
-//        System.out.println("down");
-        myCircle.setCenterY(y+=1);
+        myCircle.setCenterY(y += 10);
     }
 
     public void left(ActionEvent e) {
-//        System.out.println("left");
-        myCircle.setCenterX(x-=1);
+        myCircle.setCenterX(x -= 10);
     }
 
     public void right(ActionEvent e) {
-//        System.out.println("right");
-        myCircle.setCenterX(x+=1);
+        myCircle.setCenterX(x += 10);
     }
 }

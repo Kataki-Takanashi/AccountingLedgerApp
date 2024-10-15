@@ -10,6 +10,6 @@
       <Button layoutX="273.0" layoutY="361.0" mnemonicParsing="false" onAction="#down" text="Down" />
       <Button layoutX="531.0" layoutY="188.0" mnemonicParsing="false" onAction="#right" text="Right" />
       <Button layoutX="14.0" layoutY="188.0" mnemonicParsing="false" onAction="#left" text="Left" />
-      <Circle fill="DODGERBLUE" layoutX="298.0" layoutY="200.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="myCircle" fill="DODGERBLUE" layoutX="298.0" layoutY="200.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </AnchorPane>
