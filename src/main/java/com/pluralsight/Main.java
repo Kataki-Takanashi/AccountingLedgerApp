@@ -15,15 +15,13 @@ public class Main {
     private static final String Filename = "testTransactions.csv";
     public static void main(String[] args) throws IOException {
 
-        // Load the transactions file
-        Transactions t = new Transactions();
-        List<Transactions.Transaction>  transactions = t.loadTransactions(Filename);
-
         char userSelection = 0;
-
 
         // Main Loop
         do {
+            // Load the transactions file
+            Transactions t = new Transactions();
+            List<Transactions.Transaction>  transactions = t.loadTransactions(Filename);
             try {
                 userSelection = displayOptions();
                 switch (userSelection) {
@@ -131,7 +129,7 @@ public class Main {
 
         // Save to disk
         List<Transactions.Transaction> output = new Transactions().loadTransactions(Filename);
-        output.add(new Transactions.Transaction(
+        output.add(0, new Transactions.Transaction( // Add to beginning
                 date.toString(),
                 time.format(timeFormater),  // ensure consistent time format to the fix the nanosecond and removing seconds bugs
                 descriptionInput,

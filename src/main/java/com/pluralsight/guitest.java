@@ -18,8 +18,11 @@ public class guitest extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Scene1.fxml"));
         Scene scene = new Scene(root);
+
+        String css = this.getClass().getResource("/styletest.css").toExternalForm();
+        scene.getStylesheets().add(css);
 
         Image icon = new Image("icon.png");
         stage.getIcons().add(icon);
