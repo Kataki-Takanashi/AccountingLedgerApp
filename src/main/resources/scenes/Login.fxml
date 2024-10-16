@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="backgroundPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pluralsight.gui.Login">
+   <children>
+      <AnchorPane fx:id="GradiantPane" layoutX="60.0" layoutY="65.0" prefHeight="270.0" prefWidth="200.0" stylesheets="@../styles/Login.css">
+         <children>
+            <Label fx:id="nameTitle" layoutX="82.0" layoutY="30.0" text="Ali's">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="appTitle" layoutX="26.0" layoutY="56.0" text="Ledger">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Label>
+            <Label fx:id="YUTitle" layoutX="47.0" layoutY="127.0" text="YearUp Capstone 1" />
+            <Button fx:id="exitButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="loginPane" layoutX="242.0" layoutY="93.0" prefHeight="215.0" prefWidth="293.0">
+         <children>
+            <Button fx:id="loginButton" layoutX="116.0" layoutY="108.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="com.pluralsight.gui.Login" />
+            <Button fx:id="signupButton" layoutX="116.0" layoutY="83.0" mnemonicParsing="false" text="Sign Up" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="testControler">
    <children>
-      <Button layoutX="276.0" layoutY="240.0" mnemonicParsing="false" onAction="#login" text="Login" />
+      <Button layoutX="276.0" layoutY="240.0" mnemonicParsing="false" onAction="#login" text="com.pluralsight.gui.Login" />
       <Label layoutX="150.0" layoutY="201.0" text="Username:" />
       <TextField fx:id="nameTextField" layoutX="220.0" layoutY="197.0" />
    </children>

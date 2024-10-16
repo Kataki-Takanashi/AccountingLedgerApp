@@ -1,0 +1,16 @@
+#backgroundPane {
+    -fx-background-color: transparent;
+}
+
+#GradiantPane {
+    -fx-background-color: linear-gradient( to left top,#2A1AD8, #953DF5);
+}
+#loginPane {
+    -fx-background-color: white;
+}
+
+
+#nameTitle, #appTitle, #YUTitle {
+    -fx-text-fill: #E0E0E0;
+    -fx-font-family:
+}

@@ -1,14 +1,13 @@
 package com.pluralsight;
-
+// Imports
 import com.pluralsight.Utils.Console;
+import com.pluralsight.gui.AppMain;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -32,7 +31,7 @@ public class Main {
                     case 'L':
                         Ledger.ledgerHome(transactions); continue;
                     case 'G':
-                        guitest.main(args); // should i be passing this?
+                        AppMain.launch(AppMain.class, args); // this is how you run it from a different file to pass the right args
                 }
             }
             catch (IllegalArgumentException e) {

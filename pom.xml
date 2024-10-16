@@ -16,16 +16,21 @@
     </properties>
 
     <dependencies>
+        <!-- JavaFX Controls Dependency -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>${javafx.version}</version>
         </dependency>
+
+        <!-- JavaFX FXML Dependency -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
         </dependency>
+
+        <!-- JavaFX Graphics Dependency -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
@@ -35,6 +40,7 @@
 
     <build>
         <plugins>
+            <!-- JavaFX Maven Plugin -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -47,7 +53,14 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>com.pluralsight.guitest</mainClass>
+                    <mainClass>com.pluralsight.gui.AppMain</mainClass> <!-- Change this to your actual main class -->
+                    <!-- Pass the module-path for macOS -->
+                    <options>
+                        <option>--module-path</option>
+                        <option>${java.home}/lib/javafx-sdk/lib</option>
+                        <option>--add-modules</option>
+                        <option>javafx.controls,javafx.fxml</option>
+                    </options>
                 </configuration>
             </plugin>
         </plugins>
