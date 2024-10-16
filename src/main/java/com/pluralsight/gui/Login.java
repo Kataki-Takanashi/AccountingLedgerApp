@@ -7,11 +7,13 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -36,7 +38,7 @@ public class Login {
 
     private boolean animationDone = false; // Flag to check if button animation has run on the first click
 
-    public void loginButtonHandler(ActionEvent event) {
+    public void loginButtonHandler(ActionEvent event) throws IOException {
         if (!animationDone) {
             animateButtons(loginButton, signupButton);
             animationDone = true; // Set the flag to true after animation has run
@@ -45,7 +47,7 @@ public class Login {
         }
     }
 
-    public void signupButtonHandler(ActionEvent event) {
+    public void signupButtonHandler(ActionEvent event) throws IOException {
         if (!animationDone) {
             animateButtons(signupButton, loginButton);
             animationDone = true; // Set the flag to true after animation has run
@@ -88,8 +90,17 @@ public class Login {
         return fade;
     }
 
-    private void gotoMainScreen() {
+    private void gotoMainScreen() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/scenes/LedgerScene.fxml"));
+        Scene secondScene = new Scene(root);
 
+        String css = this.getClass().getResource("/styles/LedgerScene.css").toExternalForm();
+        secondScene.getStylesheets().add(css);
+        secondScene.setFill(Color.TRANSPARENT); // Transparent background
+
+        stage.setScene(secondScene);
+        stage.centerOnScreen();
+        stage.show();
     }
 
 
@@ -99,4 +110,7 @@ public class Login {
         System.exit(0); // Quits the whole program not just the gui, this is to escape the main loop
     }
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 }

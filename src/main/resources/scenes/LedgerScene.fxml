@@ -1,14 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.pluralsight.gui.LedgerScene"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" stylesheets="@../styles/LedgerScene.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pluralsight.gui.LedgerScene">
+   <children>
+      <TableView fx:id="ledgerTable" layoutX="100.0" layoutY="250.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="Date" />
+            <TableColumn prefWidth="75.0" text="Time" />
+            <TableColumn prefWidth="199.0" text="Description" />
+            <TableColumn minWidth="6.0" prefWidth="138.0" text="Vendor" />
+            <TableColumn prefWidth="201.0" text="Amount" />
+         </columns>
+      </TableView>
+      <VBox fx:id="moneyPane" layoutX="175.0" layoutY="43.0" prefHeight="200.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitApp" prefHeight="7.0" prefWidth="18.0" stylesheets="@../styles/LedgerScene.css" text="X" />
+            <Label fx:id="moneyLabel" alignment="CENTER" prefHeight="17.0" prefWidth="619.0" text="\$0">
+               <font>
+                  <Font size="70.0" />
+               </font>
+            </Label>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="depositButton" layoutX="121.0" layoutY="9.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="169.0" stylesheets="@../styles/LedgerScene.css" text="Deposit">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="payButton" layoutX="310.0" layoutY="9.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="176.0" stylesheets="@../styles/LedgerScene.css" text="Pay">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Button>
+                  <Separator layoutX="290.0" layoutY="50.0" opacity="0.0" prefHeight="3.0" prefWidth="20.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox fx:id="filterPane" layoutX="863.0" layoutY="235.0" prefHeight="307.0" prefWidth="150.0">
+         <children>
+            <RadioButton fx:id="noneFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="156.0" text="None">
+               <toggleGroup>
+                  <ToggleGroup fx:id="filterGroup" />
+               </toggleGroup></RadioButton>
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
+            <RadioButton fx:id="depositsFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="155.0" text="Deposits" toggleGroup="$filterGroup" />
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
+            <RadioButton fx:id="paymentsFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="156.0" text="Payments" toggleGroup="$filterGroup" />
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
+            <RadioButton fx:id="monthToDateFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="186.0" text="Month To Date" toggleGroup="$filterGroup" />
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
+            <RadioButton fx:id="previousMonthFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="198.0" text="Previous Month" toggleGroup="$filterGroup" />
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
+            <RadioButton fx:id="yearToDateFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="200.0" text="Year To Date" toggleGroup="$filterGroup" />
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
+            <RadioButton fx:id="previousYearFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="211.0" text="Prevoius Year" toggleGroup="$filterGroup" />
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
+            <RadioButton fx:id="searchByVendorFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="209.0" text="Search By Vendor" toggleGroup="$filterGroup" />
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="5.0" />
+            <TextField fx:id="vendorSearchInput" promptText="Vendor" />
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
+            <RadioButton fx:id="customSearchFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="194.0" text="Custom Search" toggleGroup="$filterGroup" />
+            <TextField fx:id="startDateInput" promptText="Start Date" />
+            <TextField fx:id="endDateInput" promptText="End Date" />
+            <TextField fx:id="descriptionFilterInput" promptText="Description" />
+            <TextField fx:id="vendorFilterInput" promptText="Vendor" />
+            <TextField fx:id="amountFilterInput" promptText="Amount" />
+         </children>
+      </VBox>
+      <HBox fx:id="inputPane" alignment="CENTER" layoutX="175.0" layoutY="662.0" prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="38.0">
+         <children>
+            <Separator opacity="0.0" prefHeight="0.0" prefWidth="30.0" />
+            <TextField fx:id="dateInput" prefHeight="25.0" prefWidth="77.0" promptText="Date" />
+            <Separator opacity="0.0" prefWidth="2.0" />
+            <TextField fx:id="timeInput" prefHeight="25.0" prefWidth="85.0" promptText="Time" />
+            <Separator layoutX="100.0" layoutY="59.0" opacity="0.0" prefWidth="2.0" />
+            <TextField fx:id="descInput" prefHeight="25.0" prefWidth="178.0" promptText="Description" />
+            <Separator layoutX="177.0" layoutY="59.0" opacity="0.0" prefWidth="2.0" />
+            <TextField fx:id="vendorInput" prefHeight="25.0" prefWidth="134.0" promptText="Vendor" />
+            <Separator layoutX="181.0" layoutY="59.0" opacity="0.0" prefWidth="2.0" />
+            <TextField fx:id="ammountInput" prefHeight="25.0" prefWidth="118.0" promptText="Amount" />
+            <Separator opacity="0.0" prefWidth="30.0" />
+         </children>
+      </HBox>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="863.0" layoutY="215.0" prefHeight="17.0" prefWidth="150.0" text="Filters" textAlignment="CENTER" />
+   </children>
 </AnchorPane>

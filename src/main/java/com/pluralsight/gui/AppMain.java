@@ -17,9 +17,10 @@ public class AppMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/scenes/Login.fxml"));
-        Scene scene = new Scene(root);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/Login.fxml"));
+        Parent root = loader.load();
 
+        Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT); // Transparent background
         stage.initStyle(StageStyle.TRANSPARENT); // Makes the window bar transparent
 
@@ -29,6 +30,9 @@ public class AppMain extends Application {
         Image icon = new Image("images/icon.png");
         stage.getIcons().add(icon);
         stage.setTitle("Ali's Ledger App");
+
+        Login controller = loader.getController(); // sending the stage to login
+        controller.setStage(stage);
 
         stage.setScene(scene);
         stage.show();

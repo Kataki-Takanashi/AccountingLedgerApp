@@ -41,6 +41,10 @@ public class Main {
         } while (userSelection != 'X');
     }
 
+    public static List<Transactions.Transaction> reloadTransactions() throws IOException {
+        return new Transactions().loadTransactions(Filename);
+    }
+
 
     private static char displayOptions() throws IllegalArgumentException {
         String options = """
