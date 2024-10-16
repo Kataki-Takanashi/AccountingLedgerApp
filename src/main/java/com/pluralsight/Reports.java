@@ -199,8 +199,6 @@ public class Reports {
                 }).collect(Collectors.toList());
             }
 
-
-
             return resultList;
         }
     }

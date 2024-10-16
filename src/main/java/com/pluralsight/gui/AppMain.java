@@ -20,8 +20,8 @@ public class AppMain extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/scenes/Login.fxml"));
         Scene scene = new Scene(root);
 
-        scene.setFill(Color.TRANSPARENT);
-        stage.initStyle(StageStyle.TRANSPARENT);
+        scene.setFill(Color.TRANSPARENT); // Transparent background
+        stage.initStyle(StageStyle.TRANSPARENT); // Makes the window bar transparent
 
         String css = this.getClass().getResource("/styles/Login.css").toExternalForm();
         scene.getStylesheets().add(css);
