@@ -24,8 +24,6 @@ public class Login {
     private Button exitButton;
 
     private Stage stage;
-    private Scene scene;
-    private Parent root;
 
     @FXML
     private Button loginButton;
@@ -43,7 +41,7 @@ public class Login {
             animateButtons(loginButton, signupButton);
             animationDone = true; // Set the flag to true after animation has run
         } else {
-            //Login();
+            gotoMainScreen(); // TODO: Add Login and Signup Functionality
         }
     }
 
@@ -52,7 +50,7 @@ public class Login {
             animateButtons(signupButton, loginButton);
             animationDone = true; // Set the flag to true after animation has run
         } else {
-            //Signup();
+            gotoMainScreen();
         }
     }
 
@@ -88,6 +86,10 @@ public class Login {
         fade.setToValue(1);
         fade.setCycleCount(1);
         return fade;
+    }
+
+    private void gotoMainScreen() {
+
     }
 
 

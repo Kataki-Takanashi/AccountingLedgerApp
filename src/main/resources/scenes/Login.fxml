@@ -29,17 +29,17 @@
       </AnchorPane>
       <AnchorPane fx:id="GradiantPane" layoutX="60.0" layoutY="65.0" prefHeight="270.0" prefWidth="200.0" stylesheets="@../styles/Login.css" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="65.0">
          <children>
-            <Label fx:id="nameTitle" layoutX="82.0" layoutY="30.0" text="Ali's">
+            <Label fx:id="nameTitle" alignment="CENTER" layoutX="1.0" layoutY="30.0" prefHeight="26.0" prefWidth="200.0" text="Ali's">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="appTitle" contentDisplay="CENTER" layoutX="26.0" layoutY="56.0" text="Ledger">
+            <Label fx:id="appTitle" alignment="CENTER" contentDisplay="CENTER" layoutY="56.0" prefHeight="63.0" prefWidth="200.0" text="Ledger" textAlignment="CENTER">
                <font>
                   <Font size="50.0" />
                </font>
             </Label>
-            <Label fx:id="YUTitle" layoutX="47.0" layoutY="127.0" text="YearUp Capstone 1" />
+            <Label fx:id="YUTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="127.0" prefHeight="17.0" prefWidth="200.0" text="YearUp Capstone 1" />
             <Button fx:id="exitButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#exitApp" prefHeight="7.0" prefWidth="18.0" stylesheets="@../styles/Login.css" text="X" />
          </children>
       </AnchorPane>
