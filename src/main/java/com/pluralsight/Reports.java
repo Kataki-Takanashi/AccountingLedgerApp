@@ -90,7 +90,7 @@ public class Reports {
     // Filters
     public class TransactionFilters {
 
-        private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // Constant is in all caps
 
         // 1. Month To Date Filter
         public static List<Transactions.Transaction> filterMonthToDate(List<Transactions.Transaction> transactions) {

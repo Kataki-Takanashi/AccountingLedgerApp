@@ -2,15 +2,29 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="backgroundPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pluralsight.gui.Login">
    <children>
       <AnchorPane fx:id="loginPane" layoutX="242.0" layoutY="93.0" prefHeight="270.0" prefWidth="293.0" AnchorPane.bottomAnchor="90.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="90.0">
          <children>
-            <Button fx:id="loginButton" layoutX="119.0" layoutY="116.0" mnemonicParsing="false" stylesheets="@../styles/Login.css" text="Login" />
-            <Button fx:id="signupButton" layoutX="119.0" layoutY="67.0" mnemonicParsing="false" stylesheets="@../styles/Login.css" text="Sign Up" />
+            <VBox fx:id="loginFields" layoutX="51.0" layoutY="79.0" opacity="0.0" prefHeight="50.0" prefWidth="221.0">
+               <children>
+                  <Label fx:id="validateText" prefHeight="1.0" prefWidth="209.0">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="usernameField" promptText="Username" />
+                  <PasswordField fx:id="passwordField" promptText="Password" />
+               </children>
+            </VBox>
+            <Button fx:id="loginButton" layoutX="119.0" layoutY="116.0" mnemonicParsing="false" onAction="#loginButtonHandler" stylesheets="@../styles/Login.css" text="Login" />
+            <Button fx:id="signupButton" layoutX="119.0" layoutY="67.0" mnemonicParsing="false" onAction="#signupButtonHandler" stylesheets="@../styles/Login.css" text="Sign Up" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="GradiantPane" layoutX="60.0" layoutY="65.0" prefHeight="270.0" prefWidth="200.0" stylesheets="@../styles/Login.css" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="65.0">
