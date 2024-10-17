@@ -1,8 +1,5 @@
-<p align="center">
+<div style="text-align: center;">
   <img src="src/main/resources/images/icon.png" alt="Logo" width="300"/>
-</p>
-
-<center>
 
 # The Bean Counter Ledger
 
@@ -10,7 +7,7 @@
 [![Hours Coding](https://wakatime.com/badge/user/018d6ba0-92b9-4fd1-bdc3-7c0f7b3f179c/project/ccdc5d8d-c55f-47ce-a283-1df113eefa3a.svg?style=for-the-badge)](https://wakatime.com/badge/user/018d6ba0-92b9-4fd1-bdc3-7c0f7b3f179c/project/ccdc5d8d-c55f-47ce-a283-1df113eefa3a)
 ![Lines of Code](https://img.shields.io/badge/lines_of_code-1k-brightgreen?style=for-the-badge)
 
-</center>
+</div>
 
 ---
 
