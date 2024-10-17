@@ -43,7 +43,7 @@
                         <Font size="35.0" />
                      </font>
                   </Button>
-                  <Button fx:id="payButton" layoutX="310.0" layoutY="9.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="176.0" stylesheets="@../styles/LedgerScene.css" text="Pay">
+                  <Button fx:id="payButton" layoutX="310.0" layoutY="9.0" mnemonicParsing="false" onAction="#makePayment" prefHeight="67.0" prefWidth="176.0" stylesheets="@../styles/LedgerScene.css" text="Pay">
                      <font>
                         <Font size="35.0" />
                      </font>

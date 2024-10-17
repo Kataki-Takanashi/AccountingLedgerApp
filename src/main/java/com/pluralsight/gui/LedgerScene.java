@@ -88,6 +88,27 @@ public class LedgerScene {
                 Double.parseDouble(ammountInput.getText())));
         new Transactions().saveTransactions(Filename, output);
         fillLedgerTable(output);
+        clearInputs(event); // same here
+    }
+
+    public void makePayment(ActionEvent event) throws IOException {
+
+        List<Transactions.Transaction> output = Main.reloadTransactions();
+        double amount = Double.parseDouble(ammountInput.getText());
+        amount *= -1;
+        output.add(0, new Transactions.Transaction( // Add to beginning
+                dateInput.getText(),
+                timeInput.getText(),
+                descInput.getText(),
+                vendorInput.getText(),
+                amount));
+        new Transactions().saveTransactions(Filename, output);
+        fillLedgerTable(output);
+        clearInputs(event); // Just passed it event idk
+    }
+
+    public void clearInputs(ActionEvent event) {
+        dateInput.clear(); timeInput.clear(); dateInput.clear(); vendorInput.clear(); ammountInput.clear();
     }
 
     public void exitApp(ActionEvent event) throws IOException {
