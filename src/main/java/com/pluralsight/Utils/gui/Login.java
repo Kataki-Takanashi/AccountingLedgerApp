@@ -1,4 +1,4 @@
-package com.pluralsight.gui;
+package com.pluralsight.Utils.gui;
 // Imports
 
 import javafx.animation.FadeTransition;
@@ -61,7 +61,7 @@ public class Login {
     private void animateButtons(Button buttonToSlideDown, Button buttonToSlideUp) {
         // Slide down the first button
         TranslateTransition slideDown = new TranslateTransition(Duration.seconds(0.5), buttonToSlideDown);
-        slideDown.setByY(buttonToSlideDown == loginButton ? 50 : 95); // This is under the  loginFields pane
+        slideDown.setByY(buttonToSlideDown == loginButton ? 40 : 105); // This is under the  loginFields pane
         slideDown.setCycleCount(1); // Only hapens once
 
         // Slide up effect for the other button

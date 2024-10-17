@@ -1,7 +1,7 @@
 package com.pluralsight;
 // Imports
 import com.pluralsight.Utils.Console;
-import com.pluralsight.gui.AppMain;
+import com.pluralsight.Utils.gui.AppMain;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -11,22 +11,36 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class Main {
-    public static final String Filename = "testTransactions.csv";
+    public static final String Filename = "testTransactions.csv"; // This is the name of the csv file we will use
+    static String RESET = "\u001B[0m";
+    static String RED = "\u001B[31m";
+    static String YELLOW = "\u001B[33m";
+    static String GREEN = "\u001B[32m";
+    public static final String LOGO = GREEN + """
+             _             _                \s
+            | |    ___  __| | __ _  ___ _ __\s
+            | |   / _ \\/ _` |/ _` |/ _ \\ '__|
+            | |__|  __/ (_| | (_| |  __/ |  \s
+            |_____\\___|\\__,_|\\__, |\\___|_|  \s
+                             |___/          \s""" + RESET;
     public static void main(String[] args) throws IOException {
+        // Load the transactions file
+        Transactions t = new Transactions();
+        List<Transactions.Transaction>  transactions = t.loadTransactions(Filename);
+        System.out.println(LOGO); // Displaying the logo once
 
         char userSelection = 0;
 
-        // Main Loop
+        // Main Menu Loop
         do {
-            // Load the transactions file
-            Transactions t = new Transactions();
-            List<Transactions.Transaction>  transactions = t.loadTransactions(Filename);
+            // Reload transaction to reflect changes
+            transactions = reloadTransactions();
             try {
                 userSelection = displayOptions();
                 switch (userSelection) {
-                    case 'D':
+                    case 'D': //Deposit
                         updateBalance(true); continue;
-                    case 'P':
+                    case 'P': //Payment
                         updateBalance(false); continue;
                     case 'L':
                         Ledger.ledgerHome(transactions); continue;
@@ -41,6 +55,7 @@ public class Main {
         } while (userSelection != 'X');
     }
 
+    // Loads Transactions from file agin to acount for changes
     public static List<Transactions.Transaction> reloadTransactions() throws IOException {
         return new Transactions().loadTransactions(Filename);
     }
@@ -50,8 +65,10 @@ public class Main {
         String options = """
                 Welcome to The Bean Counter Ledger!
                 Please select from the following choices:
-                \tAdd     [D]eposit
-                \tMake    [P]ayment
+                """ +
+                GREEN + "\tAdd     [D]eposit" + '\n' + RESET +
+                RED + "\tMake    [P]ayment" + '\n' + RESET +
+                """
                 \tView    [L]edger
                 \tDisplay [G]UI
                 \tExit    [X]
@@ -74,67 +91,104 @@ public class Main {
     }
 
     private static void updateBalance(boolean isDeposit) throws IllegalArgumentException, IOException {
-        // ask user for
-        boolean manualTime = Console.PromptForYesNo("Enter time and date manually"); // ask if user wants to enter time manually
+        boolean manualTime = Console.PromptForYesNo("Enter time and date manually");
         System.out.println("Press \"Q\" at anytime to quit!");
-        LocalDate date = LocalDate.now();LocalTime time = LocalTime.now(); // Get current time and date
-        DateTimeFormatter dateFormater = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // Moved lines out of if block to change scope
+
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+
+        DateTimeFormatter dateFormater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter timeFormater = DateTimeFormatter.ofPattern("HH:mm:ss");
-        if (manualTime) { // if so get the date and time from user
-            String dateInput, timeInput;
 
-            do {
-                dateInput = Console.PromptForString("Enter date (yyyy-MM-dd): ");
-                if (dateInput.equalsIgnoreCase("Q")) {return;} // Q to exit the method
-                try {
-                    date = LocalDate.parse(dateInput, dateFormater);
-                }
-                catch (DateTimeParseException e) {
-                    System.out.println("Invalid Date Format!"); // Interesting error here it ignored the continue statement here because the input isn't blank
-                    dateInput = "";
-                }
+        if (manualTime) {
+            date = getDateFromUser(dateFormater);
+            if (date == null) return;
 
-            }while (dateInput.isBlank());
-
-            do {
-                timeInput = Console.PromptForString("Enter time (HH:mm:ss): ");
-                if (timeInput.equalsIgnoreCase("Q")) {return;} // Q to exit the method
-                try {
-                    time = LocalTime.parse(timeInput); // Parse time input directly
-                    time = time.withNano(0);  // Strip fractional seconds
-                }
-                catch (DateTimeParseException e) {
-                    System.out.println("Invalid Time Format!");
-                    timeInput = "";
-                }
-
-            }while (timeInput.isBlank());
+            time = getTimeFromUser();
+            if (time == null) return;
         }
-        String descriptionInput = "", vendorInput = "", amountInput;
-        double amount = 0;
 
+        String descriptionInput = getDescriptionFromUser();
+        if (descriptionInput == null) return;
 
+        String vendorInput = getVendorFromUser();
+        if (vendorInput == null) return;
+
+        double amount = getAmountFromUser(isDeposit);
+        if (amount == 0) return;
+
+        if (!isDeposit) {amount *= -1;}
+
+        saveTransaction(date, time, timeFormater, descriptionInput, vendorInput, amount);
+    }
+
+    private static LocalDate getDateFromUser(DateTimeFormatter dateFormater) {
+        String dateInput;
+        LocalDate date = null;
+        do {
+            dateInput = Console.PromptForString("Enter date (yyyy-MM-dd): ");
+            if (dateInput.equalsIgnoreCase("Q")) return null;
+            try {
+                date = LocalDate.parse(dateInput, dateFormater);
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid Date Format!");
+                dateInput = "";
+            }
+        } while (dateInput.isBlank());
+        return date;
+    }
+
+    private static LocalTime getTimeFromUser() {
+        String timeInput;
+        LocalTime time = null;
+        do {
+            timeInput = Console.PromptForString("Enter time (HH:mm:ss): ");
+            if (timeInput.equalsIgnoreCase("Q")) return null;
+            try {
+                time = LocalTime.parse(timeInput).withNano(0);
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid Time Format!");
+                timeInput = "";
+            }
+        } while (timeInput.isBlank());
+        return time;
+    }
+
+    private static String getDescriptionFromUser() {
+        String descriptionInput;
         do {
             descriptionInput = Console.PromptForString("Enter description: ");
-            if (descriptionInput.equalsIgnoreCase("Q")) {return;}
+            if (descriptionInput.equalsIgnoreCase("Q")) return null;
         } while (descriptionInput.isBlank());
+        return descriptionInput;
+    }
+
+    private static String getVendorFromUser() {
+        String vendorInput;
         do {
             vendorInput = Console.PromptForString("Enter vendor: ");
-            if (vendorInput.equalsIgnoreCase("Q")) {return;}
+            if (vendorInput.equalsIgnoreCase("Q")) return null;
         } while (vendorInput.isBlank());
+        return vendorInput;
+    }
+
+    private static double getAmountFromUser(boolean isDeposit) {
+        String amountInput;
+        double amount = 0;
         do {
             amountInput = Console.PromptForString("Enter amount: ");
-            if (amountInput.equalsIgnoreCase("Q")) {return;}
-            if (amountInput.isBlank()) {continue;}
+            if (amountInput.equalsIgnoreCase("Q")) return 0;
+            if (amountInput.isBlank()) continue;
             amount = Double.parseDouble(amountInput);
-            if (!isDeposit) {amount *= -1;}
         } while (amount == 0);
+        return amount;
+    }
 
-        // Save to disk
+    private static void saveTransaction(LocalDate date, LocalTime time, DateTimeFormatter timeFormater, String descriptionInput, String vendorInput, double amount) throws IOException {
         List<Transactions.Transaction> output = new Transactions().loadTransactions(Filename);
-        output.add(0, new Transactions.Transaction( // Add to beginning
+        output.add(0, new Transactions.Transaction(
                 date.toString(),
-                time.format(timeFormater),  // ensure consistent time format to the fix the nanosecond and removing seconds bugs
+                time.format(timeFormater),
                 descriptionInput,
                 vendorInput,
                 amount));

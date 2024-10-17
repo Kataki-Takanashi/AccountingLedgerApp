@@ -1,4 +1,4 @@
-package com.pluralsight.gui;
+package com.pluralsight.Utils.gui;
 
 import com.pluralsight.Main;
 import com.pluralsight.Reports;
@@ -22,6 +22,7 @@ public class LedgerScene {
 
     private Stage stage;
 
+// Theese vars are refrences to Nodes of different types in the fxml file, the @FXML connects them to the one in the file
     @FXML
     private TextField vendorSearchInput;
     @FXML
@@ -54,7 +55,7 @@ public class LedgerScene {
 
     @FXML
     private TableView<Transactions.Transaction> ledgerTable;
-
+    // Special method that runs when the scene is loaded
     public void initialize() throws IOException {
         List<Transactions.Transaction> transactions = Main.reloadTransactions();
         fillLedgerTable(transactions);
@@ -63,8 +64,8 @@ public class LedgerScene {
     public void fillLedgerTable(List<Transactions.Transaction> transactions) {
         ledgerTable.getColumns().clear(); // Empty
 
-        TableColumn<Transactions.Transaction, String> dateColumn = new TableColumn<>("Date");
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        TableColumn<Transactions.Transaction, String> dateColumn = new TableColumn<>("Date"); // This Date is a column name
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date")); // This tells it to take the date from each transaction, its like Transaction.getDate()
 
         TableColumn<Transactions.Transaction, String> timeColumn = new TableColumn<>("Time");
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
@@ -77,7 +78,7 @@ public class LedgerScene {
 
         TableColumn<Transactions.Transaction, Double> amountColumn = new TableColumn<>("Amount");
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
-
+        // Adds it all to the table
         ledgerTable.getColumns().addAll(dateColumn, timeColumn, descriptionColumn, vendorColumn, amountColumn);
 
         ObservableList<Transactions.Transaction> observableTransactions = FXCollections.observableArrayList(transactions);
@@ -116,7 +117,7 @@ public class LedgerScene {
                 amount));
         new Transactions().saveTransactions(Filename, output);
         fillLedgerTable(output);
-        clearInputs(event); // Just passed it event idk
+        clearInputs(event); // Just passed it event idk, maybe illl make a clear button idk
     }
 
     public void filterLeger(ActionEvent event) throws IOException {

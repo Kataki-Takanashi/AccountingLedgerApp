@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" stylesheets="@../styles/LedgerScene.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pluralsight.gui.LedgerScene">
+<AnchorPane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" stylesheets="@../styles/LedgerScene.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pluralsight.Utils.gui.LedgerScene">
    <children>
       <Label fx:id="filterLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="863.0" layoutY="205.0" prefHeight="17.0" prefWidth="150.0" text="Filters" textAlignment="CENTER">
          <font>
@@ -55,6 +55,7 @@
       </VBox>
       <VBox fx:id="filterPane" layoutX="863.0" layoutY="235.0" prefHeight="307.0" prefWidth="150.0">
          <children>
+            <Separator layoutX="15.0" layoutY="455.0" opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
             <RadioButton fx:id="noneFilter" mnemonicParsing="false" onAction="#filterLeger" prefHeight="18.0" prefWidth="156.0" selected="true" text="None">
                <toggleGroup>
                   <ToggleGroup fx:id="filterGroup" />
@@ -76,12 +77,15 @@
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="5.0" />
             <TextField fx:id="vendorSearchInput" onAction="#filterLeger" promptText="Vendor" />
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
+            <Separator layoutX="15.0" layoutY="267.0" opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
             <RadioButton fx:id="customSearchFilter" mnemonicParsing="false" onAction="#filterLeger" prefHeight="18.0" prefWidth="194.0" text="Custom Search" toggleGroup="$filterGroup" />
+            <Separator layoutX="15.0" layoutY="277.0" opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
             <TextField fx:id="startDateInput" promptText="Start Date" />
             <TextField fx:id="endDateInput" promptText="End Date" />
             <TextField fx:id="descriptionFilterInput" promptText="Description" />
             <TextField fx:id="vendorFilterInput" promptText="Vendor" />
             <TextField fx:id="amountFilterInput" promptText="Amount" />
+            <Separator layoutX="15.0" layoutY="305.0" opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
          </children>
       </VBox>
       <HBox fx:id="inputPane" alignment="CENTER" layoutX="175.0" layoutY="662.0" prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="38.0">

@@ -1,4 +1,4 @@
-package com.pluralsight.gui;
+package com.pluralsight.Utils.gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

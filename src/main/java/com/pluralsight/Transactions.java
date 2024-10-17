@@ -69,10 +69,6 @@ public class Transactions {
         return transactionList;
     }
 
-    public static String getFileHeader() {
-        return fileHeader;
-    }
-
 
     public static class Transaction {
         private String date, time, description, vendor;
@@ -137,7 +133,7 @@ public class Transactions {
         }
         @Override
         public String toString() {
-            return date + '|' + time + '|' + description + '|' + vendor + '|' + amount;
+            return date + '|' + time + '|' + description + '|' + vendor + '|' + amount + '\n';
         }
     }
 }

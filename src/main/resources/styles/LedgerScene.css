@@ -1,5 +1,11 @@
 
 
+@font-face {
+    font-family: "Consolas";
+    src: url("/fonts/Consolas.ttf");
+}
+
+
 #backgroundPane {
     -fx-background-color: transparent;
 }
@@ -7,6 +13,7 @@
 #moneyLabel, #noneFilter, #depositsFilter, #paymentsFilter, #monthToDateFilter, #previousMonthFilter, #yearToDateFilter,
  #previousYearFilter, #searchByVendorFilter, #customSearchFilter, #filterLabel {
     -fx-text-fill: white;
+    -fx-font-family: "Consolas";
 }
 
 
@@ -64,6 +71,10 @@
 }
 
 
+#ledgerTable {
+    -fx-font-family: "Consolas";
+}
+
 
 #vendorSearchInput, #startDateInput, #endDateInput, #descriptionFilterInput, #vendorFilterInput, #amountFilterInput,
  #dateInput, #timeInput, #descInput, #vendorInput, #ammountInput {
@@ -75,6 +86,7 @@
     -fx-margin: 5px;
     -fx-font-size: 14px;
     -fx-background-radius: 5px;
+    -fx-font-family: "Consolas";
 }
 
 #vendorSearchInput:focused, #startDateInput:focused, #endDateInput:focused, #descriptionFilterInput:focused,

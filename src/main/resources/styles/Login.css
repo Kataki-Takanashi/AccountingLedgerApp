@@ -33,6 +33,7 @@
     -fx-padding: 10px 20px;
     -fx-text-fill: white;
     -fx-cursor: hand;
+    -fx-font-family: "Consolas";
 
     /* This is how u do a shadow in JavaFX :[ */
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 5, 0, 0, 2);
@@ -43,14 +44,14 @@
 }
 
 #loginButton:hover, #signupButton:hover, #exitButton:hover {
-    -fx-scale-x: 1.1;  /* Grow a bit */
-    -fx-scale-y: 1.1;
+    -fx-scale-x: 1.4;  /* Grow a bit */
+    -fx-scale-y: 1.4;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0, 0, 4); /* Bigger shadow for hover effect */
 }
 
 #loginButton:pressed, #signupButton:pressed, #exitButton:pressed {
-    -fx-scale-x: 0.9;  /* Squish a bit */
-    -fx-scale-y: 0.9;
+    -fx-scale-x: 1.2;  /* Squish a bit */
+    -fx-scale-y: 1.2;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 12, 0, 0, 3); /* Even bigger shadow on pressed */
 }
 
@@ -64,6 +65,7 @@
     -fx-background-insets: 0 0 2 0;
     -fx-padding: 5px 0px;
     -fx-font-size: 16px;
+    -fx-font-family: "Consolas";
 }
 
 #usernameField:focused, #passwordField:focused {

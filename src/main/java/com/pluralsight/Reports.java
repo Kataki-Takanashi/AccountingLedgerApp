@@ -25,7 +25,7 @@ public class Reports {
                     case 3:
                         displayList(TransactionFilters.filterYearToDate(transactions)); continue;
                     case 4:
-                        displayList(TransactionFilters.filterPreviousYear(transactions));
+                        displayList(TransactionFilters.filterPreviousYear(transactions)); continue;
                     case 5:
                         // Get vendor name
                         String vendor;
@@ -46,6 +46,7 @@ public class Reports {
 
     public static void displayList(List<Transactions.Transaction> transactions) {
         if (transactions.isEmpty()) {System.out.println("No results found for your search!"); return;}
+        // Header
         System.out.printf("%-13s %-15s %-50s %-40s %-10s%n", "Date", "Time", "Description", "Vendor", "Amount");
         for (Transactions.Transaction transaction : transactions) {
             System.out.printf("%-13s %-15s %-50s %-40s %-10s%n",
@@ -98,7 +99,7 @@ public class Reports {
             return transactions.stream()
                     .filter(transaction -> {
                         LocalDate transactionDate = LocalDate.parse(transaction.getDate(), DATE_FORMATTER);
-                        return transactionDate.getYear() == now.getYear() && transactionDate.getMonth() == now.getMonth() && !transactionDate.isAfter(now);
+                        return transactionDate.getYear() == now.getYear() && transactionDate.getMonth() == now.getMonth();
                     })
                     .collect(Collectors.toList());
         }
@@ -120,7 +121,7 @@ public class Reports {
             return transactions.stream()
                     .filter(transaction -> {
                         LocalDate transactionDate = LocalDate.parse(transaction.getDate(), DATE_FORMATTER);
-                        return transactionDate.getYear() == now.getYear() && !transactionDate.isAfter(now);
+                        return transactionDate.getYear() == now.getYear();
                     })
                     .collect(Collectors.toList());
         }
