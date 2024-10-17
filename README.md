@@ -5,10 +5,10 @@
 <h1 align="center">The Bean Counter Ledger</h1>
 
 <p align="center">
+    <img src="https://img.shields.io/badge/YearUp%20Java%20Capstone%201-blueviolet?style=for-the-badge" alt="YearUp Java Capstone 1" />
     <a href="https://wakatime.com/badge/user/018d6ba0-92b9-4fd1-bdc3-7c0f7b3f179c/project/ccdc5d8d-c55f-47ce-a283-1df113eefa3a">
         <img src="https://wakatime.com/badge/user/018d6ba0-92b9-4fd1-bdc3-7c0f7b3f179c/project/ccdc5d8d-c55f-47ce-a283-1df113eefa3a.svg?style=for-the-badge" alt="Hours Coding" />
     </a>
-    <img src="https://img.shields.io/badge/YearUp%20Java%20Capstone%201-blueviolet?style=for-the-badge" alt="YearUp Java Capstone 1" />
     <img src="https://img.shields.io/badge/lines_of_code-1k-brightgreen?style=for-the-badge" alt="Lines of Code" />
 </p>
 
