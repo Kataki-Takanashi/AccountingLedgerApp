@@ -201,6 +201,60 @@ public class Reports {
 
             return resultList;
         }
+        public static List<Transactions.Transaction> customSearch(List<Transactions.Transaction> transactions,
+                                                                  String startDateString, String endDateString,
+                                                                  String description, String vendor, String inputDouble) {
+            List<Transactions.Transaction> resultList = transactions;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            // Get Start date
+            if (!startDateString.isBlank()) {
+                LocalDate startDate = LocalDate.parse(startDateString, formatter);
+
+                // Use stream to filter transactions by start date
+                resultList = resultList.stream()
+                        .filter(transaction -> {
+                            LocalDate transactionDate = LocalDate.parse(transaction.getDate(), formatter);
+                            return transactionDate.isAfter(startDate);
+                        }).collect(Collectors.toList());
+            }
+
+            // Get End Date
+            if (!endDateString.isBlank()) {
+                LocalDate startDate = LocalDate.parse(endDateString, formatter);
+
+                // Use stream to filter transactions by end date
+                resultList = resultList.stream()
+                        .filter(transaction -> {
+                            LocalDate transactionDate = LocalDate.parse(transaction.getDate(), formatter);
+                            return transactionDate.isBefore(startDate);
+                        }).collect(Collectors.toList());
+            }
+
+            // Get Description
+            if (!description.isBlank()) {
+                resultList = resultList.stream().filter(transaction -> {
+                    return transaction.getDescription().equals(description);
+                }).collect(Collectors.toList());
+            }
+
+            // Get Vendor
+            if (!vendor.isBlank()) {
+                resultList = resultList.stream().filter(transaction -> {
+                    return transaction.getVendor().equals(vendor);
+                }).collect(Collectors.toList());
+            }
+
+            // Get Amount
+            if (!inputDouble.isBlank()) {
+                double amount = Double.parseDouble(inputDouble);
+                resultList = resultList.stream().filter(transaction -> {
+                    return transaction.getAmount() == amount;
+                }).collect(Collectors.toList());
+            }
+
+            return resultList;
+        }
     }
 }
 

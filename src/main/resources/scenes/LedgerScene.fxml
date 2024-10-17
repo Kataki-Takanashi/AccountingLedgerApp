@@ -55,28 +55,28 @@
       </VBox>
       <VBox fx:id="filterPane" layoutX="863.0" layoutY="235.0" prefHeight="307.0" prefWidth="150.0">
          <children>
-            <RadioButton fx:id="noneFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="156.0" selected="true" text="None">
+            <RadioButton fx:id="noneFilter" mnemonicParsing="false" onAction="#filterLeger" prefHeight="18.0" prefWidth="156.0" selected="true" text="None">
                <toggleGroup>
                   <ToggleGroup fx:id="filterGroup" />
                </toggleGroup></RadioButton>
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
-            <RadioButton fx:id="depositsFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="155.0" text="Deposits" toggleGroup="$filterGroup" />
+            <RadioButton fx:id="depositsFilter" mnemonicParsing="false" onAction="#filterLeger" prefHeight="18.0" prefWidth="155.0" text="Deposits" toggleGroup="$filterGroup" />
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
-            <RadioButton fx:id="paymentsFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="156.0" text="Payments" toggleGroup="$filterGroup" />
+            <RadioButton fx:id="paymentsFilter" mnemonicParsing="false" onAction="#filterLeger" prefHeight="18.0" prefWidth="156.0" text="Payments" toggleGroup="$filterGroup" />
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
-            <RadioButton fx:id="monthToDateFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="186.0" text="Month To Date" toggleGroup="$filterGroup" />
+            <RadioButton fx:id="monthToDateFilter" mnemonicParsing="false" onAction="#filterLeger" prefHeight="18.0" prefWidth="186.0" text="Month To Date" toggleGroup="$filterGroup" />
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
-            <RadioButton fx:id="previousMonthFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="198.0" text="Previous Month" toggleGroup="$filterGroup" />
+            <RadioButton fx:id="previousMonthFilter" mnemonicParsing="false" onAction="#filterLeger" prefHeight="18.0" prefWidth="198.0" text="Previous Month" toggleGroup="$filterGroup" />
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
-            <RadioButton fx:id="yearToDateFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="200.0" text="Year To Date" toggleGroup="$filterGroup" />
+            <RadioButton fx:id="yearToDateFilter" mnemonicParsing="false" onAction="#filterLeger" prefHeight="18.0" prefWidth="200.0" text="Year To Date" toggleGroup="$filterGroup" />
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
-            <RadioButton fx:id="previousYearFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="211.0" text="Prevoius Year" toggleGroup="$filterGroup" />
+            <RadioButton fx:id="previousYearFilter" mnemonicParsing="false" onAction="#filterLeger" prefHeight="18.0" prefWidth="211.0" text="Previous Year" toggleGroup="$filterGroup" />
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
-            <RadioButton fx:id="searchByVendorFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="209.0" text="Search By Vendor" toggleGroup="$filterGroup" />
+            <RadioButton fx:id="searchByVendorFilter" mnemonicParsing="false" onAction="#filterLeger" prefHeight="18.0" prefWidth="209.0" text="Search By Vendor" toggleGroup="$filterGroup" />
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="5.0" />
-            <TextField fx:id="vendorSearchInput" promptText="Vendor" />
+            <TextField fx:id="vendorSearchInput" onAction="#filterLeger" promptText="Vendor" />
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
-            <RadioButton fx:id="customSearchFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="194.0" text="Custom Search" toggleGroup="$filterGroup" />
+            <RadioButton fx:id="customSearchFilter" mnemonicParsing="false" onAction="#filterLeger" prefHeight="18.0" prefWidth="194.0" text="Custom Search" toggleGroup="$filterGroup" />
             <TextField fx:id="startDateInput" promptText="Start Date" />
             <TextField fx:id="endDateInput" promptText="End Date" />
             <TextField fx:id="descriptionFilterInput" promptText="Description" />

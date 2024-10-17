@@ -1,21 +1,20 @@
 package com.pluralsight.gui;
 
 import com.pluralsight.Main;
+import com.pluralsight.Reports;
 import com.pluralsight.Transactions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.pluralsight.Main.Filename;
 
@@ -25,6 +24,16 @@ public class LedgerScene {
 
     @FXML
     private TextField vendorSearchInput;
+    @FXML
+    private TextField startDateInput;
+    @FXML
+    private TextField endDateInput;
+    @FXML
+    private TextField descriptionFilterInput;
+    @FXML
+    private TextField vendorFilterInput;
+    @FXML
+    private TextField amountFilterInput;
 
     @FXML
     private Label moneyLabel;
@@ -39,6 +48,9 @@ public class LedgerScene {
     TextField vendorInput;
     @FXML
     TextField ammountInput;
+
+    @FXML
+    ToggleGroup filterGroup;
 
     @FXML
     private TableView<Transactions.Transaction> ledgerTable;
@@ -107,8 +119,41 @@ public class LedgerScene {
         clearInputs(event); // Just passed it event idk
     }
 
+    public void filterLeger(ActionEvent event) throws IOException {
+        RadioButton selectedFilterButton = (RadioButton) filterGroup.getSelectedToggle();
+        String selectedFilter = selectedFilterButton.getText();
+        List<Transactions.Transaction> transactions = Main.reloadTransactions();
+
+        switch (selectedFilter) {
+            case "None":
+                fillLedgerTable(transactions); break;
+            case "Deposits":
+                fillLedgerTable(transactions.stream()
+                        .filter(transaction -> transaction.getAmount() > 0)
+                        .collect(Collectors.toList())); break;
+            case "Payments":
+                fillLedgerTable(transactions.stream()
+                        .filter(transaction -> transaction.getAmount() < 0)
+                        .collect(Collectors.toList())); break;
+            case "Month To Date":
+                fillLedgerTable(Reports.TransactionFilters.filterMonthToDate(transactions)); break;
+            case "Previous Month":
+                fillLedgerTable(Reports.TransactionFilters.filterPreviousMonth(transactions)); break;
+            case "Year To Date":
+                fillLedgerTable(Reports.TransactionFilters.filterYearToDate(transactions)); break;
+            case "Previous Year":
+                fillLedgerTable(Reports.TransactionFilters.filterPreviousYear(transactions)); break;
+            case "Search By Vendor":
+                fillLedgerTable(Reports.TransactionFilters.filterByVendor(transactions, vendorSearchInput.getText())); break;
+            case "Custom Search":
+                fillLedgerTable(Reports.TransactionFilters.customSearch(transactions,
+                        startDateInput.getText(), endDateInput.getText(), descriptionFilterInput.getText(),
+                        vendorFilterInput.getText(), amountFilterInput.getText())); break;
+        }
+    }
+
     public void clearInputs(ActionEvent event) {
-        dateInput.clear(); timeInput.clear(); dateInput.clear(); vendorInput.clear(); ammountInput.clear();
+        dateInput.clear(); timeInput.clear(); descInput.clear(); vendorInput.clear(); ammountInput.clear();
     }
 
     public void exitApp(ActionEvent event) throws IOException {
