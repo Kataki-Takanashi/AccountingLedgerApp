@@ -70,10 +70,11 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 12, 0, 0, 3); /* Even bigger shadow on pressed */
 }
 
-
+/* Woulda gone with but its monospaced and dosent fit all the data
 #ledgerTable {
     -fx-font-family: "Consolas";
 }
+*/
 
 
 #vendorSearchInput, #startDateInput, #endDateInput, #descriptionFilterInput, #vendorFilterInput, #amountFilterInput,

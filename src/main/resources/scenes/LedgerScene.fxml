@@ -25,7 +25,7 @@
             <TableColumn prefWidth="75.0" text="Time" />
             <TableColumn prefWidth="199.0" text="Description" />
             <TableColumn minWidth="6.0" prefWidth="138.0" text="Vendor" />
-            <TableColumn prefWidth="257.0" text="Amount" />
+            <TableColumn prefWidth="262.0" text="Amount" />
          </columns>
       </TableView>
       <VBox fx:id="moneyPane" layoutX="175.0" layoutY="43.0" prefHeight="200.0" prefWidth="600.0">
