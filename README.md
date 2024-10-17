@@ -1,5 +1,8 @@
-<div style="text-align: center;">
+<p align="center">
   <img src="src/main/resources/images/icon.png" alt="Logo" width="300"/>
+</p>
+
+<div style="text-align: center;">
 
 # The Bean Counter Ledger
 
