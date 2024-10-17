@@ -15,13 +15,17 @@
 
 <AnchorPane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" stylesheets="@../styles/LedgerScene.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pluralsight.gui.LedgerScene">
    <children>
+      <Label fx:id="filterLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="863.0" layoutY="205.0" prefHeight="17.0" prefWidth="150.0" text="Filters" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
       <TableView fx:id="ledgerTable" layoutX="100.0" layoutY="250.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0">
          <columns>
             <TableColumn prefWidth="75.0" text="Date" />
             <TableColumn prefWidth="75.0" text="Time" />
             <TableColumn prefWidth="199.0" text="Description" />
             <TableColumn minWidth="6.0" prefWidth="138.0" text="Vendor" />
-            <TableColumn prefWidth="201.0" text="Amount" />
+            <TableColumn prefWidth="257.0" text="Amount" />
          </columns>
       </TableView>
       <VBox fx:id="moneyPane" layoutX="175.0" layoutY="43.0" prefHeight="200.0" prefWidth="600.0">
@@ -34,7 +38,7 @@
             </Label>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="depositButton" layoutX="121.0" layoutY="9.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="169.0" stylesheets="@../styles/LedgerScene.css" text="Deposit">
+                  <Button fx:id="depositButton" layoutX="121.0" layoutY="9.0" mnemonicParsing="false" onAction="#makeDeposit" prefHeight="67.0" prefWidth="169.0" stylesheets="@../styles/LedgerScene.css" text="Deposit">
                      <font>
                         <Font size="35.0" />
                      </font>
@@ -51,7 +55,7 @@
       </VBox>
       <VBox fx:id="filterPane" layoutX="863.0" layoutY="235.0" prefHeight="307.0" prefWidth="150.0">
          <children>
-            <RadioButton fx:id="noneFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="156.0" text="None">
+            <RadioButton fx:id="noneFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="156.0" selected="true" text="None">
                <toggleGroup>
                   <ToggleGroup fx:id="filterGroup" />
                </toggleGroup></RadioButton>
@@ -95,6 +99,5 @@
             <Separator opacity="0.0" prefWidth="30.0" />
          </children>
       </HBox>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="863.0" layoutY="215.0" prefHeight="17.0" prefWidth="150.0" text="Filters" textAlignment="CENTER" />
    </children>
 </AnchorPane>

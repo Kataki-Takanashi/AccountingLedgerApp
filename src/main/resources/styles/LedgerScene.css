@@ -5,12 +5,12 @@
 }
 
 #moneyLabel, #noneFilter, #depositsFilter, #paymentsFilter, #monthToDateFilter, #previousMonthFilter, #yearToDateFilter,
- #previousYearFilter, #searchByVendorFilter, #customSearchFilter {
+ #previousYearFilter, #searchByVendorFilter, #customSearchFilter, #filterLabel {
     -fx-text-fill: white;
 }
 
 
-#moneyPane, #filterPane, #inputPane, #ledgerTable {
+#moneyPane, #filterPane, #inputPane, #ledgerTable, #filterLabel {
     -fx-background-color: linear-gradient( to left top,#2A1AD8, #953DF5);
     -fx-border-color: linear-gradient( to left top,#2A1AD8, #953DF5);
     -fx-background-radius: 13;
@@ -87,6 +87,8 @@
 #previousYearFilter, #searchByVendorFilter, #customSearchFilter {
     -fx-cursor: hand;
 }
+
+
 
 
 #exitButton {

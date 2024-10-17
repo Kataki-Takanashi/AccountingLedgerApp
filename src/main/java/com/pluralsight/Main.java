@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class Main {
-    private static final String Filename = "testTransactions.csv";
+    public static final String Filename = "testTransactions.csv";
     public static void main(String[] args) throws IOException {
 
         char userSelection = 0;

@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
+import static com.pluralsight.Main.Filename;
+
 public class LedgerScene {
 
     private Stage stage;
@@ -26,6 +28,17 @@ public class LedgerScene {
 
     @FXML
     private Label moneyLabel;
+
+    @FXML
+    TextField dateInput;
+    @FXML
+    TextField timeInput;
+    @FXML
+    TextField descInput;
+    @FXML
+    TextField vendorInput;
+    @FXML
+    TextField ammountInput;
 
     @FXML
     private TableView<Transactions.Transaction> ledgerTable;
@@ -57,6 +70,24 @@ public class LedgerScene {
 
         ObservableList<Transactions.Transaction> observableTransactions = FXCollections.observableArrayList(transactions);
         ledgerTable.setItems(observableTransactions);
+        double sum = 0;
+        for (Transactions.Transaction transaction : transactions) {
+            sum += transaction.getAmount();
+        }
+        moneyLabel.setText('$' + String.valueOf(Math.round(sum * 100.0) / 100.0));
+    }
+
+    public void makeDeposit(ActionEvent event) throws IOException {
+
+        List<Transactions.Transaction> output = Main.reloadTransactions();
+        output.add(0, new Transactions.Transaction( // Add to beginning
+                dateInput.getText(),
+                timeInput.getText(),
+                descInput.getText(),
+                vendorInput.getText(),
+                Double.parseDouble(ammountInput.getText())));
+        new Transactions().saveTransactions(Filename, output);
+        fillLedgerTable(output);
     }
 
     public void exitApp(ActionEvent event) throws IOException {
