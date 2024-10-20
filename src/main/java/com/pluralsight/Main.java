@@ -2,6 +2,7 @@ package com.pluralsight;
 // Imports
 import com.pluralsight.Utils.Console;
 import com.pluralsight.Utils.gui.AppMain;
+import javafx.application.Application;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -11,11 +12,11 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class Main {
-    public static final String Filename = "testTransactions.csv"; // This is the name of the csv file we will use
-    static String RESET = "\u001B[0m";
-    static String RED = "\u001B[31m";
-    static String YELLOW = "\u001B[33m";
-    static String GREEN = "\u001B[32m";
+    public static final String FILENAME = "testTransactions.csv"; // This is the name of the csv file we will use
+    static final String RESET = "\u001B[0m";
+    static final String RED = "\u001B[31m";
+    static final String YELLOW = "\u001B[33m";
+    static final String GREEN = "\u001B[32m";
     public static final String LOGO = GREEN + """
              _             _                \s
             | |    ___  __| | __ _  ___ _ __\s
@@ -26,7 +27,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         // Load the transactions file
         Transactions t = new Transactions();
-        List<Transactions.Transaction>  transactions = t.loadTransactions(Filename);
+        List<Transactions.Transaction>  transactions = t.loadTransactions(FILENAME);
         System.out.println(LOGO); // Displaying the logo once
 
         char userSelection = 0;
@@ -45,7 +46,7 @@ public class Main {
                     case 'L':
                         Ledger.ledgerHome(transactions); continue;
                     case 'G':
-                        AppMain.launch(AppMain.class, args); // this is how you run it from a different file to pass the right args
+                        Application.launch(AppMain.class, args); // this is how you run it from a different file to pass the right args
                 }
             }
             catch (IllegalArgumentException e) {
@@ -55,9 +56,9 @@ public class Main {
         } while (userSelection != 'X');
     }
 
-    // Loads Transactions from file agin to acount for changes
+    // Loads Transactions from file again to account for changes
     public static List<Transactions.Transaction> reloadTransactions() throws IOException {
-        return new Transactions().loadTransactions(Filename);
+        return new Transactions().loadTransactions(FILENAME);
     }
 
 
@@ -185,13 +186,13 @@ public class Main {
     }
 
     private static void saveTransaction(LocalDate date, LocalTime time, DateTimeFormatter timeFormater, String descriptionInput, String vendorInput, double amount) throws IOException {
-        List<Transactions.Transaction> output = new Transactions().loadTransactions(Filename);
+        List<Transactions.Transaction> output = new Transactions().loadTransactions(FILENAME);
         output.add(0, new Transactions.Transaction(
                 date.toString(),
                 time.format(timeFormater),
                 descriptionInput,
                 vendorInput,
                 amount));
-        new Transactions().saveTransactions(Filename, output);
+        new Transactions().saveTransactions(FILENAME, output);
     }
 }

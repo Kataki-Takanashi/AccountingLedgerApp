@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.pluralsight.Main.Filename;
+import static com.pluralsight.Main.FILENAME;
 
 public class LedgerScene {
 
@@ -99,7 +99,7 @@ public class LedgerScene {
                 descInput.getText(),
                 vendorInput.getText(),
                 Double.parseDouble(ammountInput.getText())));
-        new Transactions().saveTransactions(Filename, output);
+        new Transactions().saveTransactions(FILENAME, output);
         fillLedgerTable(output);
         clearInputs(event); // same here
     }
@@ -115,7 +115,7 @@ public class LedgerScene {
                 descInput.getText(),
                 vendorInput.getText(),
                 amount));
-        new Transactions().saveTransactions(Filename, output);
+        new Transactions().saveTransactions(FILENAME, output);
         fillLedgerTable(output);
         clearInputs(event); // Just passed it event idk, maybe illl make a clear button idk
     }

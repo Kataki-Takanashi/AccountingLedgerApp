@@ -1,4 +1,4 @@
-/* Uncomment this before release, SceneBuilder dosent like the custom font */
+/* Uncomment this before release, SceneBuilder doesn't like the custom font */
 @font-face {
     font-family: "Consolas";
     src: url("/fonts/Consolas.ttf");
