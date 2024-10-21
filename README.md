@@ -46,6 +46,27 @@ It also allows you to filter the transactions based on different criteria, like 
 
 ---
 
+### GUI Screenshots
+
+---
+
+![Login Screen](/src/main/resources/images/LoginScreen.png)
+
+
+*Screenshot of Login Screen using JavaFX and CSS*
+
+![Login Screen Fields](src/main/resources/images/LoginScreenFields.png)
+
+
+*Screenshot of Login Screen Fields this appears after an animation with JavaFX and CSS*
+
+![Main Screen](src/main/resources/images/MainScreen.png)
+
+
+*Screenshot of Main Screen it functions the same as the text version*
+
+---
+
 ### Code Highlight
 
 One of the key features in my app is the ability to perform a **custom search** on transactions using different filters 
