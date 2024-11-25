@@ -10,6 +10,7 @@
         <img src="https://wakatime.com/badge/user/018d6ba0-92b9-4fd1-bdc3-7c0f7b3f179c/project/ccdc5d8d-c55f-47ce-a283-1df113eefa3a.svg?style=for-the-badge" alt="Hours Coding" />
     </a>
     <img src="https://img.shields.io/badge/lines_of_code-1k-brightgreen?style=for-the-badge" alt="Lines of Code" />
+    <img src="https://img.shields.io/badge/javafx-%23FF0000.svg?style=for-the-badge&logo=javafx&logoColor=white" />
 </p>
 
 
